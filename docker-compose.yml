@@ -30,6 +30,7 @@ services:
   # '--profile=setup' CLI flag to Compose commands, or "up" the service by name
   # such as 'docker compose up setup'.
   setup:
+    container_name: elk-setup
     profiles:
       - setup
     build:
@@ -56,6 +57,7 @@ services:
       - elasticsearch
 
   elasticsearch:
+    container_name: elk-elasticsearch
     build:
       context: elasticsearch/
       args:
@@ -81,6 +83,7 @@ services:
     restart: unless-stopped
 
   logstash:
+    container_name: elk-logstash
     build:
       context: logstash/
       args:
@@ -103,6 +106,7 @@ services:
     restart: unless-stopped
 
   kibana:
+    container_name: elk-kibana
     build:
       context: kibana/
       args:
