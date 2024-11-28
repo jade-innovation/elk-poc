@@ -7,10 +7,12 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/default.conf.template:/etc/nginx/templates/default.conf.template
       - ./nginx/logs/:/logs/
       - ./nginx/certbot/conf:/etc/letsencrypt
       - ./nginx/certbot/www:/var/www/certbot
+    environment:
+      APP_DOMAIN: ${APP_DOMAIN}
     networks:
       - elk
     depends_on:
